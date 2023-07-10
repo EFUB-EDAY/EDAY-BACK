@@ -173,6 +173,7 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+.idea/
 application.yml
 .env
 
