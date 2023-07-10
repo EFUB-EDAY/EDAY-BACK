@@ -13,4 +13,10 @@ public class DDay {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "d_day_id")
 	private Long id;
+
+	@Column(name = "d_day", nullable = false)
+	private int dDay;
+
+	@Column(nullable = false)
+	private String topic;
 }
