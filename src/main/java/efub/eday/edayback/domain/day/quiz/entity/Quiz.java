@@ -1,15 +1,14 @@
 package efub.eday.edayback.domain.day.quiz.entity;
 
 import efub.eday.edayback.domain.day.dday.entity.DDay;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
+
+import java.util.List;
 
 @Entity
+@Getter
 public class Quiz {
 
 	@Id
@@ -29,4 +28,17 @@ public class Quiz {
 	@OneToOne
 	@JoinColumn(name = "d_day_id", nullable = false)
 	private DDay dDay;
+
+	@OneToMany(mappedBy = "quiz")
+	private List<Options> optionsList;
+
+	@Builder
+	public Quiz(Long id, String content, String description, String imageUrl, DDay dDay, List<Options> optionsList){
+		this.id=id;
+		this.content=content;
+		this.description=description;
+		this.imageUrl=imageUrl;
+		this.dDay=dDay;
+		this.optionsList=optionsList;
+	}
 }
