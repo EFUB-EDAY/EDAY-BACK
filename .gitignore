@@ -12,10 +12,7 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
-application.yaml
-.env
-docker-compose.yaml
-Dockerfile
+
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -179,7 +176,9 @@ gradle-app.setting
 *.hprof
 
 .idea/
-application.yml
+application.yaml
 .env
+docker-compose.yaml
+Dockerfile
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij,macos,windows
