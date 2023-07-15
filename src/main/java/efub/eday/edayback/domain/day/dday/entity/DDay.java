@@ -1,22 +1,21 @@
 package efub.eday.edayback.domain.day.dday.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+public enum Dday {
+	SEVEN(7),
+	SIX(6),
+	FIVE(5),
+	FOUR(4),
+	THREE(3),
+	TWO(2),
+	ONE(1);
 
-@Entity
-public class DDay {
+	private final int remainingDays;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "d_day_id")
-	private Long id;
+	Dday(int remainingDays) {
+		this.remainingDays = remainingDays;
+	}
 
-	@Column(name = "d_day", nullable = false)
-	private int dDay;
-
-	@Column(nullable = false)
-	private String topic;
+	public int getRemainingDays() {
+		return remainingDays;
+	}
 }

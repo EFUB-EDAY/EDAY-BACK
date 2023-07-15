@@ -18,8 +18,12 @@ public class Subject {
 
 	@Enumerated(value = EnumType.ORDINAL)
 	@Column(name = "d_day", nullable = false)
-	private int dday;
+	private Dday dday;
 
 	@Column(nullable = false)
 	private String headline;
+
+	public int getDday() {
+		return dday.getRemainingDays();
+	}
 }
