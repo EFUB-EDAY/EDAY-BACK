@@ -22,7 +22,7 @@ public class InfoDto {
 	public static InfoDto from(Info info) {
 		InfoDto infoDto = new InfoDto();
 		infoDto.setInfoId(info.getId());
-		infoDto.setDDay(info.getDDay().getDDay());
+		infoDto.setDDay(info.getSubject().getDday());
 
 		List<ImageDto> imageList = new ArrayList<>();
 		for (InfoImage infoImage : info.getInfoImageList()) {

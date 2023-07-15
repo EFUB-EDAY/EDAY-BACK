@@ -14,8 +14,8 @@ public class InfoService {
 	private final InfoRepository infoRepository;
 
 	@Transactional(readOnly = true)
-	public Info getInfoByDDay(int dDay) {
-		return infoRepository.findByDDay_DDay(dDay)
+	public Info getInfoByDday(int dday) {
+		return infoRepository.findInfoBySubject_Dday(dday)
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 추가정보입니다."));
 	}
 }

@@ -20,8 +20,8 @@ public class InfoController {
 
 	@GetMapping("/{d_day}")
 	@ResponseStatus(value = HttpStatus.OK)
-	public InfoDto getInfoByDDay(@PathVariable("d_day") int dDay) {
-		Info info = infoService.getInfoByDDay(dDay);
+	public InfoDto getInfoByDDay(@PathVariable("d_day") int dday) {
+		Info info = infoService.getInfoByDday(dday);
 		return InfoDto.from(info);
 	}
 }
