@@ -2,7 +2,7 @@ package efub.eday.edayback.domain.day.info.entity;
 
 import java.util.List;
 
-import efub.eday.edayback.domain.day.dday.entity.DDay;
+import efub.eday.edayback.domain.day.dday.entity.Subject;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,17 +25,17 @@ public class Info {
 	@Column(name = "info_id")
 	private Long id;
 
-	@OneToOne(mappedBy = "info")
-	@JoinColumn(name = "d_day_id")
-	private DDay dDay;
+	@OneToOne
+	@JoinColumn(name = "subject_id", nullable = false)
+	private Subject subject;
 
 	@OneToMany(mappedBy = "info")
 	private List<InfoImage> infoImageList;
 
 	@Builder
-	public Info(Long id, DDay dDay, List<InfoImage> infoImageList) {
+	public Info(Long id, Subject subject, List<InfoImage> infoImageList) {
 		this.id = id;
-		this.dDay = dDay;
+		this.subject = subject;
 		this.infoImageList = infoImageList;
 	}
 }
