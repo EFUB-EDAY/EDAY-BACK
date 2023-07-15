@@ -12,6 +12,11 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+application.yaml
+.env
+docker-compose.yaml
+Dockerfile
+
 # AWS User-specific
 .idea/**/aws.xml
 
