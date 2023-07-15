@@ -1,6 +1,6 @@
 package efub.eday.edayback.domain.query.entity;
 
-import efub.eday.edayback.domain.day.dday.entity.DDay;
+import efub.eday.edayback.domain.day.dday.entity.Subject;
 import efub.eday.edayback.domain.member.entity.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,6 +26,6 @@ public class Query {
 	private Member writer;
 
 	@ManyToOne
-	@JoinColumn(name = "d_day_id", nullable = false)
-	private DDay dDay;
+	@JoinColumn(nullable = false)
+	private Subject subject;
 }
