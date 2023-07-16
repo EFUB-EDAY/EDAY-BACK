@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.info.dto.InfoDto;
 import efub.eday.edayback.domain.day.info.entity.Info;
 import efub.eday.edayback.domain.day.info.service.InfoService;
@@ -20,7 +21,7 @@ public class InfoController {
 
 	@GetMapping("/{d_day}")
 	@ResponseStatus(value = HttpStatus.OK)
-	public InfoDto getInfoByDDay(@PathVariable("d_day") int dday) {
+	public InfoDto getInfoByDDay(@PathVariable("d_day") Dday dday) {
 		Info info = infoService.getInfoByDday(dday);
 		return InfoDto.from(info);
 	}
