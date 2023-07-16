@@ -1,6 +1,6 @@
 package efub.eday.edayback.domain.day.title.entity;
 
-import efub.eday.edayback.domain.day.dday.entity.DDay;
+import efub.eday.edayback.domain.day.dday.entity.Subject;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +24,6 @@ public class Title {
 	private String imageUrl;
 
 	@OneToOne
-	@JoinColumn(name = "d_day_id", nullable = false)
-	private DDay dDay;
+	@JoinColumn(nullable = false)
+	private Subject subject;
 }

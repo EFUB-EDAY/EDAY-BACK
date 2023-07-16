@@ -6,9 +6,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class InfoImage {
 
 	@Id
@@ -19,7 +24,14 @@ public class InfoImage {
 	@Column(name = "image_url")
 	private String url;
 
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "info_id")
 	private Info info;
+
+	@Builder
+	public InfoImage(Long id, String url, Info info) {
+		this.id = id;
+		this.url = url;
+		this.info = info;
+	}
 }
