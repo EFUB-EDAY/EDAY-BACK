@@ -1,6 +1,6 @@
 package efub.eday.edayback.domain.day.quiz.entity;
 
-import efub.eday.edayback.domain.day.dday.entity.DDay;
+import efub.eday.edayback.domain.day.dday.entity.Subject;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,18 +27,18 @@ public class Quiz {
 
 	@OneToOne
 	@JoinColumn(name = "d_day_id", nullable = false)
-	private DDay dDay;
+	private Subject dday;
 
 	@OneToMany(mappedBy = "quiz")
 	private List<Options> optionsList;
 
 	@Builder
-	public Quiz(Long id, String content, String description, String imageUrl, DDay dDay, List<Options> optionsList){
+	public Quiz(Long id, String content, String description, String imageUrl, Subject dday, List<Options> optionsList){
 		this.id=id;
 		this.content=content;
 		this.description=description;
 		this.imageUrl=imageUrl;
-		this.dDay=dDay;
+		this.dday=dday;
 		this.optionsList=optionsList;
 	}
 }

@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class QuizResponseDto {
-    private Long dDay;
+    private int dday;
     private String topic;
     private String quizContent;
     private List<OptionsResponseDto> optionList;
 
-    public QuizResponseDto(Long dDay, String topic, String quizContent, List<OptionsResponseDto> optionList){
-        this.dDay=dDay;
+    public QuizResponseDto(int dday, String topic, String quizContent, List<OptionsResponseDto> optionList){
+        this.dday=dday;
         this.topic=topic;
         this.quizContent=quizContent;
         this.optionList=optionList;
@@ -29,8 +29,8 @@ public class QuizResponseDto {
                 .map(OptionsResponseDto::from)
                 .collect(Collectors.toList());
         return new QuizResponseDto(
-                quiz.getDDay(),
-                quiz.getDDay().getTopic(),
+                quiz.getDday().getDday(),
+                quiz.getDday().getHeadline(),
                 quiz.getContent(),
                 optionList
         );
