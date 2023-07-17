@@ -7,8 +7,12 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class Subject {
 
 	@Id
@@ -25,5 +29,9 @@ public class Subject {
 
 	public int getDday() {
 		return dday.getRemainingDays();
+	}
+
+	public String getHeadline() {
+		return headline;
 	}
 }
