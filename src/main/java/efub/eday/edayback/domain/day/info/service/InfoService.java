@@ -15,7 +15,7 @@ public class InfoService {
 	private final InfoRepository infoRepository;
 
 	@Transactional(readOnly = true)
-	public Info getInfoByDday(Dday dday) { // Dday 엔티티를 인자로 받도록 수정
+	public Info getInfoByDday(Dday dday) {
 		return infoRepository.findInfoBySubject_Dday(dday)
 			.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 추가정보입니다."));
 	}
