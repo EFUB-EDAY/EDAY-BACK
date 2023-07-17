@@ -4,11 +4,13 @@ import efub.eday.edayback.domain.day.quiz.entity.Quiz;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class QuizResponseDto {
     private int dday;
@@ -29,8 +31,8 @@ public class QuizResponseDto {
                 .map(OptionsResponseDto::from)
                 .collect(Collectors.toList());
         return new QuizResponseDto(
-                quiz.getDday().getDday(),
-                quiz.getDday().getHeadline(),
+                quiz.getSubject().getDday(),
+                quiz.getSubject().getHeadline(),
                 quiz.getContent(),
                 optionList
         );

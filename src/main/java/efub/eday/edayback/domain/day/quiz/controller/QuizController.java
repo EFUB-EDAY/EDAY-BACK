@@ -1,5 +1,6 @@
 package efub.eday.edayback.domain.day.quiz.controller;
 
+import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.quiz.dto.QuizRequestDto;
 import efub.eday.edayback.domain.day.quiz.dto.QuizResponseDto;
 import efub.eday.edayback.domain.day.quiz.entity.Quiz;
@@ -17,7 +18,7 @@ public class QuizController {
     //퀴즈 내용 조회
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
-    public QuizResponseDto quizFind(@PathVariable Long d_day){
+    public QuizResponseDto Findquiz(@PathVariable Long d_day){
         Quiz quiz = quizService.findQuiz(d_day);
         return QuizResponseDto.from(quiz);
     }

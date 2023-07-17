@@ -11,7 +11,7 @@ public class OptionsResponseDto {
     private Long id;
     private String content;
 
-    public OptionsResponseDto(Long id, String content){
+    private OptionsResponseDto(Long id, String content){
         this.id=id;
         this.content=content;
     }

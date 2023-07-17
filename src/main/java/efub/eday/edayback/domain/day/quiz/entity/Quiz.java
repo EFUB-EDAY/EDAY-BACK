@@ -27,18 +27,17 @@ public class Quiz {
 
 	@OneToOne
 	@JoinColumn(name = "d_day_id", nullable = false)
-	private Subject dday;
+	private Subject subject;
 
 	@OneToMany(mappedBy = "quiz")
 	private List<Options> optionsList;
 
 	@Builder
-	public Quiz(Long id, String content, String description, String imageUrl, Subject dday, List<Options> optionsList){
-		this.id=id;
+	public Quiz(String content, String description, String imageUrl, Subject subject, List<Options> optionsList){
 		this.content=content;
 		this.description=description;
 		this.imageUrl=imageUrl;
-		this.dday=dday;
+		this.subject=subject;
 		this.optionsList=optionsList;
 	}
 }

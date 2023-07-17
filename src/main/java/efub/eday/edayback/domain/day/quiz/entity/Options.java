@@ -31,8 +31,7 @@ public class Options {
 	private Quiz quiz;
 
 	@Builder
-	public Options(Long id, String content, Boolean isAnswer, Quiz quiz){
-		this.id=id;
+	public Options(String content, Boolean isAnswer, Quiz quiz){
 		this.content=content;
 		this.isAnswer=isAnswer;
 		this.quiz=quiz;

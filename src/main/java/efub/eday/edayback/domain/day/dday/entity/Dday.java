@@ -18,13 +18,4 @@ public enum Dday {
 	public int getRemainingDays() {
 		return remainingDays;
 	}
-
-	public static Dday fromRemainingDays(int remainingDays) { // 문자열 값을 열거형으로 변환하는 메소드를 추가
-		for (Dday dday : Dday.values()) {
-			if (dday.getRemainingDays() == remainingDays) {
-				return dday;
-			}
-		}
-		throw new IllegalArgumentException("Invalid remaining days value: " + remainingDays);
-	}
 }
