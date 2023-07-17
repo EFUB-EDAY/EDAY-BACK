@@ -21,8 +21,9 @@ public class InfoController {
 
 	@GetMapping("/{d_day}")
 	@ResponseStatus(value = HttpStatus.OK)
-	public InfoDto getInfoByDDay(@PathVariable("d_day") Dday dday) {
-		Info info = infoService.getInfoByDday(dday);
+	public InfoDto getInfoByDday(@PathVariable("d_day") int dday) {
+		Dday ddayEnum = Dday.fromRemainingDays(dday);
+		Info info = infoService.getInfoByDday(ddayEnum);
 		return InfoDto.from(info);
 	}
 }
