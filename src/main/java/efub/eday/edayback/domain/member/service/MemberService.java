@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import efub.eday.edayback.domain.member.dto.MemberResponseDto;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.oauth.KakaoProfile;
 import efub.eday.edayback.domain.member.entity.oauth.OAuthToken;
@@ -26,7 +27,7 @@ public class MemberService {
 
 	private final MemberRepository memberRepository;
 
-	public Member getAccessToken(String code) {
+	public MemberResponseDto getAccessToken(String code) {
 
 		RestTemplate rt = new RestTemplate();
 
@@ -63,7 +64,7 @@ public class MemberService {
 
 	}
 
-	private Member findProfile(OAuthToken oauthToken) {
+	private MemberResponseDto findProfile(OAuthToken oauthToken) {
 		//토큰 이용하여 사용자 정보 조회
 		RestTemplate rt2 = new RestTemplate();
 
@@ -92,7 +93,7 @@ public class MemberService {
 		return saveMember(kakaoProfile);
 	}
 
-	public Member saveMember(@RequestBody KakaoProfile kakaoProfile) {
+	public MemberResponseDto saveMember(@RequestBody KakaoProfile kakaoProfile) {
 		//Member 저장
 		Member kakaoMember = memberRepository.findByEmail(kakaoProfile.getKakao_account().getEmail());
 
@@ -107,7 +108,7 @@ public class MemberService {
 				.build();
 			memberRepository.save(kakaoMember);
 		}
-		return kakaoMember;
+		return new MemberResponseDto(kakaoMember);
 	}
 
 }
