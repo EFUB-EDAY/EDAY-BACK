@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,11 +26,4 @@ public class InfoImage {
 	@ManyToOne
 	@JoinColumn(name = "info_id")
 	private Info info;
-
-	@Builder
-	public InfoImage(Long id, String url, Info info) {
-		this.id = id;
-		this.url = url;
-		this.info = info;
-	}
 }

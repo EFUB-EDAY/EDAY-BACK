@@ -33,8 +33,7 @@ public class Info {
 	private List<InfoImage> infoImageList;
 
 	@Builder
-	public Info(Long id, Subject subject, List<InfoImage> infoImageList) {
-		this.id = id;
+	public Info(Subject subject, List<InfoImage> infoImageList) {
 		this.subject = subject;
 		this.infoImageList = infoImageList;
 	}
