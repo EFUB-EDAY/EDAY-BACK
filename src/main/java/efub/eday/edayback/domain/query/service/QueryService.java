@@ -3,6 +3,10 @@ package efub.eday.edayback.domain.query.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import efub.eday.edayback.domain.day.dday.entity.Subject;
+import efub.eday.edayback.domain.day.dday.repository.SubjectRepository;
+import efub.eday.edayback.domain.member.entity.Member;
+import efub.eday.edayback.domain.member.service.MemberService;
 import efub.eday.edayback.domain.query.dto.QueryRequestDto;
 import efub.eday.edayback.domain.query.entity.Query;
 import efub.eday.edayback.domain.query.repository.QueryRepository;
@@ -12,23 +16,20 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 @RequiredArgsConstructor
 public class QueryService {
-
 	private final QueryRepository queryRepository;
-	// private final MemberService memberService;
+	private final MemberService memberService;
+	private final SubjectRepository subjectRepository;
 
 	public Query addQuery(QueryRequestDto requestDto) {
-		// Member writer = memberService.findMemberById(requestDto.getMemberId());
+		Member writer = memberService.findMemberById(requestDto.getMemberId());
 
-		/*
-		Subject subject = Subject.builder()
-			.dday(Dday.valueOf(requestDto.getDDay()))
-			.build();
-		*/
+		Subject subject = subjectRepository.findById(requestDto.getSubjectId())
+			.orElseThrow(() -> new IllegalArgumentException("유효하지 않은 ID"));
 
 		Query query = Query.builder()
 			.content(requestDto.getQueryContent())
-			//	.writer(writer)
-			//	.subject(subject)
+			.writer(writer)
+			.subject(subject)
 			.build();
 
 		return queryRepository.save(query);
