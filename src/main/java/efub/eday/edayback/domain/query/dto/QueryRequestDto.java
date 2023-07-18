@@ -4,8 +4,9 @@ import lombok.Getter;
 
 /*
 {
+	"memberId" : 1,
     "queryContent" : "공강을 보내기 좋은 장소에 관련하여 문의 드립니다.",
-	"dDay" : 3
+	"subjectId" : 1
 }
  */
 
@@ -13,5 +14,5 @@ import lombok.Getter;
 public class QueryRequestDto {
 	private Long memberId;
 	private String queryContent;
-	private int dDay;
+	private Long subjectId;
 }
