@@ -4,11 +4,13 @@ import efub.eday.edayback.domain.day.dday.entity.Subject;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Quiz {
 
 	@Id
