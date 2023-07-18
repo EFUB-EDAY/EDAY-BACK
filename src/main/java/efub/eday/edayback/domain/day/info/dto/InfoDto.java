@@ -14,15 +14,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class InfoDto {
-	private Long infoId;
-	private Long infoImageId;
-	private int dDay;
+	// private Long infoId;
+	// private Long infoImageId;
+	private int dday;
+	private String headline;
 	private List<ImageDto> imageList;
 
 	public static InfoDto from(Info info) {
 		InfoDto infoDto = new InfoDto();
-		infoDto.setInfoId(info.getId());
-		infoDto.setDDay(info.getSubject().getDday());
+
+		infoDto.setDday(info.getSubject().getDday());
+		infoDto.setHeadline(info.getSubject().getHeadline());
 
 		List<ImageDto> imageList = new ArrayList<>();
 		for (InfoImage infoImage : info.getInfoImageList()) {
