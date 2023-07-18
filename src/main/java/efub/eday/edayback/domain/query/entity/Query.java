@@ -23,7 +23,7 @@ public class Query {
 	@Column(name = "query_id")
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
 
 	@ManyToOne
@@ -35,8 +35,7 @@ public class Query {
 	private Subject subject;
 
 	@Builder
-	public Query(Long id, String content, Member writer, Subject subject) {
-		this.id = id;
+	public Query(String content, Member writer, Subject subject) {
 		this.content = content;
 		this.writer = writer;
 		this.subject = subject;
