@@ -27,14 +27,18 @@ public class Options {
 	@Column(nullable = false)
 	private Boolean isAnswer;
 
+	@Column(nullable = false)
+	private int optionNumber;
+
 	@ManyToOne
 	@JoinColumn(name = "quiz_id")
 	private Quiz quiz;
 
 	@Builder
-	public Options(String content, Boolean isAnswer, Quiz quiz){
+	public Options(String content, Boolean isAnswer, Quiz quiz, int optionNumber){
 		this.content=content;
 		this.isAnswer=isAnswer;
 		this.quiz=quiz;
+		this.optionNumber=optionNumber;
 	}
 }

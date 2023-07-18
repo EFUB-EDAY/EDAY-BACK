@@ -24,11 +24,11 @@ public class QuizService {
 	}
 
 	//퀴즈 정답 확인
-	public boolean checkAnswer(int d_day, Long optionId){
+	public boolean checkAnswer(int d_day, int option_id){
 		Quiz quiz = findQuiz(d_day);
 
 		for (Options option : quiz.getOptionsList()) {
-			if (option.getId().equals(optionId)) {
+			if (option.getOptionNumber() == option_id) {
 				return option.getIsAnswer();
 			}
 		}
