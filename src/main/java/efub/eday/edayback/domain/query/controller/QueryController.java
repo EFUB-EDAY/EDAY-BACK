@@ -19,7 +19,7 @@ public class QueryController {
 	private final QueryService queryService;
 
 	@PostMapping
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public Query addquery(@RequestBody QueryRequestDto requestDto) {
 		return queryService.addQuery(requestDto);
 	}
