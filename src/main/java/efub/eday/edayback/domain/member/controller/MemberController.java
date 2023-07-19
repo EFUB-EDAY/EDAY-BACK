@@ -2,6 +2,7 @@ package efub.eday.edayback.domain.member.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import efub.eday.edayback.domain.member.dto.MemberResponseDto;
@@ -15,7 +16,7 @@ public class MemberController {
 	private final MemberService memberService;
 
 	@GetMapping("/oauth")
-	public MemberResponseDto kakaoLogin(String code) {
+	public MemberResponseDto kakaoLogin(@RequestParam String code) {
 		MemberResponseDto member = memberService.getAccessToken(code);
 		return member;
 	}
