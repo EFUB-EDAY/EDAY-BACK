@@ -8,8 +8,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
+@Getter
 public class Title {
 
 	@Id
@@ -26,4 +31,11 @@ public class Title {
 	@OneToOne
 	@JoinColumn(nullable = false)
 	private Subject subject;
+
+	@Builder
+	public Title(String name, String imageUrl, Subject subject) {
+		this.name = name;
+		this.imageUrl = imageUrl;
+		this.subject = subject;
+	}
 }
