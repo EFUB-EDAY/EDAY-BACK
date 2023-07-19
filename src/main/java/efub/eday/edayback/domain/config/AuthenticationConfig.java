@@ -3,7 +3,6 @@ package efub.eday.edayback.domain.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -19,7 +18,7 @@ import efub.eday.edayback.domain.member.service.MemberService;
 public class AuthenticationConfig {
 	MemberService memberService;
 
-	@Value("${jwt.secret}")
+	@Value("${spring.jwt.secret}")
 	private String secretKey;
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
@@ -31,8 +30,7 @@ public class AuthenticationConfig {
 			.csrf().disable()
 			.cors().and()
 			.authorizeRequests()
-			.antMatchers("카카오 로그인 요청 API").permitAll()
-			.antMatchers(HttpMethod.GET, "/api/*").authenticated()
+			.antMatchers("/members/**", "/infos/**", "querys/**", "titles/**", "quiz/**").permitAll()
 			.and()
 			.sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // jwt 사용하는 경우 사용

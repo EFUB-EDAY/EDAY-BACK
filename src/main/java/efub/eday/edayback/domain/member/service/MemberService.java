@@ -1,5 +1,6 @@
 package efub.eday.edayback.domain.member.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -14,20 +15,26 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import efub.eday.edayback.domain.member.dto.MemberResponseDto;
+import efub.eday.edayback.domain.member.dto.LoginResponseDto;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.oauth.KakaoProfile;
 import efub.eday.edayback.domain.member.entity.oauth.OAuthToken;
 import efub.eday.edayback.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class MemberService {
 
 	private final MemberRepository memberRepository;
+	private final JwtProvider jwtProvider;
 
-	public MemberResponseDto getAccessToken(String code) {
+	@Value("${spring.jwt.secret}")
+	private String secretKey;
+
+	public Member getAccessToken(String code) {
 
 		RestTemplate rt = new RestTemplate();
 
@@ -59,12 +66,13 @@ public class MemberService {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		System.out.println(oauthToken);
 
 		return findProfile(oauthToken);
 
 	}
 
-	private MemberResponseDto findProfile(OAuthToken oauthToken) {
+	private Member findProfile(OAuthToken oauthToken) {
 		//토큰 이용하여 사용자 정보 조회
 		RestTemplate rt2 = new RestTemplate();
 
@@ -90,10 +98,11 @@ public class MemberService {
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
+		System.out.println(kakaoProfile);
 		return saveMember(kakaoProfile);
 	}
 
-	public MemberResponseDto saveMember(@RequestBody KakaoProfile kakaoProfile) {
+	public Member saveMember(@RequestBody KakaoProfile kakaoProfile) {
 		//Member 저장
 		Member kakaoMember = memberRepository.findByEmail(kakaoProfile.getKakao_account().getEmail());
 
@@ -108,7 +117,18 @@ public class MemberService {
 				.build();
 			memberRepository.save(kakaoMember);
 		}
-		return new MemberResponseDto(kakaoMember);
+		System.out.println(kakaoMember);
+		return kakaoMember;
+	}
+
+	public LoginResponseDto login(Member member) {
+		String authToken = jwtProvider.createAccessToken(member.getId(), secretKey);
+		LoginResponseDto loginResponseDto = LoginResponseDto.builder()
+			.member(member)
+			.accessToken(authToken)
+			.build();
+		System.out.println(loginResponseDto);
+		return loginResponseDto;
 	}
 
 }
