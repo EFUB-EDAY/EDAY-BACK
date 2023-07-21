@@ -1,5 +1,4 @@
 package efub.eday.edayback.domain.day.quiz.service;
-import efub.eday.edayback.domain.day.dday.entity.Subject;
 import efub.eday.edayback.domain.day.quiz.entity.Options;
 import efub.eday.edayback.domain.day.title.entity.Title;
 import efub.eday.edayback.domain.day.title.repository.TitleRepository;

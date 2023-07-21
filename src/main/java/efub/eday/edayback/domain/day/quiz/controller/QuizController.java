@@ -1,12 +1,9 @@
 package efub.eday.edayback.domain.day.quiz.controller;
-
 import efub.eday.edayback.domain.day.quiz.dto.QuizAnswerResponseDto;
 import efub.eday.edayback.domain.day.quiz.dto.QuizRequestDto;
-import efub.eday.edayback.domain.member.entity.Member;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import efub.eday.edayback.domain.day.quiz.dto.QuizResponseDto;
 import efub.eday.edayback.domain.day.quiz.entity.Quiz;
 import efub.eday.edayback.domain.day.quiz.service.QuizService;
