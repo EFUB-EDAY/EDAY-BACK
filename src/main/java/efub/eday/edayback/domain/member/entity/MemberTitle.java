@@ -8,7 +8,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 public class MemberTitle {
 
@@ -27,4 +32,11 @@ public class MemberTitle {
 	@ManyToOne
 	@JoinColumn(name = "title_id", nullable = false)
 	private Title title;
+
+	@Builder
+	public MemberTitle(boolean getTitle, Member member, Title title) {
+		this.getTitle = getTitle;
+		this.member = member;
+		this.title = title;
+	}
 }

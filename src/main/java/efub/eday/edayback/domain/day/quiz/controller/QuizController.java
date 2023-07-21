@@ -2,6 +2,8 @@ package efub.eday.edayback.domain.day.quiz.controller;
 
 import efub.eday.edayback.domain.day.quiz.dto.QuizAnswerResponseDto;
 import efub.eday.edayback.domain.day.quiz.dto.QuizRequestDto;
+import efub.eday.edayback.domain.member.entity.Member;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuizController {
 	private final QuizService quizService;
+	private final HttpSession httpSession;
 
 	//퀴즈 내용 조회
 	@GetMapping
@@ -30,7 +33,8 @@ public class QuizController {
 			@PathVariable int d_day,
 			@RequestBody QuizRequestDto quizRequestDto
 	) {
-		boolean isCorrect = quizService.checkAnswer(d_day, quizRequestDto.getOptionId());
+		Long memberId = (Long) httpSession.getAttribute("memberId");
+		boolean isCorrect = quizService.checkAnswer(d_day, quizRequestDto.getOptionId(), memberId);
 		String quizDescription = null;
 		if (isCorrect) {
 			quizDescription = quizService.getQuizDescription(d_day);

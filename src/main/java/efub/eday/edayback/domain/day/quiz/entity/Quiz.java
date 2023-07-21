@@ -1,6 +1,7 @@
 package efub.eday.edayback.domain.day.quiz.entity;
 
 import efub.eday.edayback.domain.day.dday.entity.Subject;
+import efub.eday.edayback.domain.day.title.entity.Title;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,4 +43,5 @@ public class Quiz {
 		this.subject=subject;
 		this.optionsList=optionsList;
 	}
+
 }
