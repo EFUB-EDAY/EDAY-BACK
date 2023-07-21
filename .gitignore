@@ -176,9 +176,7 @@ gradle-app.setting
 *.hprof
 
 .idea/
-application.yaml
+application.yml
 .env
-docker-compose.yaml
-Dockerfile
 
 # End of https://www.toptal.com/developers/gitignore/api/java,gradle,intellij,macos,windows
