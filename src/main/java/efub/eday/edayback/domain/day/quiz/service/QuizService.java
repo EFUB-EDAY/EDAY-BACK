@@ -51,6 +51,10 @@ public class QuizService {
 			MemberTitle memberTitle = memberTitleRepository.findByMemberAndTitle(member, title)
 					.orElseThrow(() -> new IllegalArgumentException("해당 멤버의 타이틀을 찾을 수 없습니다."));
 
+			//member lever+1
+			if(!memberTitle.getGetTitle()){
+				member.setLevel(member.getLevel()+1);
+			}
 			//getTitle값 true로 변경
 			memberTitle.setGetTitle(true);
 			memberTitleRepository.save(memberTitle);

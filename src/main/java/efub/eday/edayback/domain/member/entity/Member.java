@@ -2,6 +2,7 @@ package efub.eday.edayback.domain.member.entity;
 
 import java.time.LocalDate;
 
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Member {
 
