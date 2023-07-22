@@ -24,10 +24,10 @@ public class Info {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "info_id")
-	private Long id;
+	private Integer id;
 
 	@OneToOne
-	@JoinColumn(name = "subject_id", nullable = false)
+	@JoinColumn(name = "subject_id", nullable = false, unique = true)
 	private Subject subject;
 
 	@OneToMany(mappedBy = "info")
