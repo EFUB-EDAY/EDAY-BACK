@@ -9,6 +9,6 @@ import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.MemberTitle;
 
 @Repository
-public interface MemberTitleRepository extends JpaRepository<MemberTitle, Long> {
+public interface MemberTitleRepository extends JpaRepository<MemberTitle, Integer> {
 	List<MemberTitle> findByMember(Member member);
 }
