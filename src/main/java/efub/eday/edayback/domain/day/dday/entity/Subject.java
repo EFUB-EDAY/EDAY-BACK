@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -33,5 +34,11 @@ public class Subject {
 
 	public String getHeadline() {
 		return headline;
+	}
+
+	@Builder
+	public Subject(Dday dday, String headline) {
+		this.dday = dday;
+		this.headline = headline;
 	}
 }
