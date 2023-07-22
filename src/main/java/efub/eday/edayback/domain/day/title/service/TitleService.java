@@ -24,7 +24,7 @@ public class TitleService {
 	private final MemberTitleRepository memberTitleRepository;
 
 	@Transactional(readOnly = true)
-	public TitleResponseDto getTitlePage(Long memberId) {
+	public TitleResponseDto getTitlePage(Integer memberId) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new IllegalArgumentException("해당하는 회원이 없습니다. ID: " + memberId));
 

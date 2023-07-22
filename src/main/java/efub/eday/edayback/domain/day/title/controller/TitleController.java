@@ -18,7 +18,7 @@ public class TitleController {
 	private final TitleService titleService;
 
 	@GetMapping("/{member_id}")
-	public ResponseEntity<TitleResponseDto> getTitlePage(@PathVariable("member_id") Long memberId) {
+	public ResponseEntity<TitleResponseDto> getTitlePage(@PathVariable("member_id") Integer memberId) {
 		TitleResponseDto titleResponseDto = titleService.getTitlePage(memberId);
 		return ResponseEntity.ok(titleResponseDto);
 	}
