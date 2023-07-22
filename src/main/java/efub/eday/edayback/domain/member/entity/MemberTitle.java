@@ -11,9 +11,9 @@ import jakarta.persistence.ManyToOne;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class MemberTitle {
 
@@ -32,4 +32,11 @@ public class MemberTitle {
 	@ManyToOne
 	@JoinColumn(name = "title_id", nullable = false)
 	private Title title;
+
+	@Builder
+	public MemberTitle(Boolean getTitle, Member member, Title title) {
+		this.getTitle = getTitle;
+		this.member = member;
+		this.title = title;
+	}
 }
