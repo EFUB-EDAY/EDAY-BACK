@@ -15,7 +15,7 @@ public class MemberQuiz {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "member_quiz_id")
-	private Long id;
+	private Integer id;
 
 	@Column(nullable = false)
 	private Boolean isCorrect;

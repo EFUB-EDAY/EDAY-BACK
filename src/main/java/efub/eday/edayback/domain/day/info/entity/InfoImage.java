@@ -20,10 +20,10 @@ public class InfoImage {
 	@Column(name = "info_image_id")
 	private Long id;
 
-	@Column(name = "image_url")
+	@Column(name = "image_url", nullable = false)
 	private String url;
 
 	@ManyToOne
-	@JoinColumn(name = "info_id")
+	@JoinColumn(name = "info_id", nullable = false)
 	private Info info;
 }
