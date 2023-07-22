@@ -40,7 +40,7 @@ public class Member {
 
 	@CreationTimestamp   //insert할 때 자동 날짜 적용
 	@Column(nullable = false)
-	private LocalDate createdDate;
+	private LocalDateTime createdDate;
 
 	@Column(nullable = false)
 	private Boolean isActive;
