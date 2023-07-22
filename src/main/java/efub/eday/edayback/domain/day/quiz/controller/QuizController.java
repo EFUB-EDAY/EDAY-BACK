@@ -30,8 +30,9 @@ public class QuizController {
 			@PathVariable int d_day,
 			@RequestBody QuizRequestDto quizRequestDto
 	) {
-		Long memberId = (Long) httpSession.getAttribute("memberId");
-		boolean isCorrect = quizService.checkAnswer(d_day, quizRequestDto.getOptionId(), memberId);
+		Long memberId = (Long) httpSession.getAttribute("memberId"); //JwtProvider로 변경 예정
+
+		boolean isCorrect = quizService.checkAnswer(d_day, quizRequestDto.getOptionNumber(), memberId);
 		String quizDescription = null;
 		if (isCorrect) {
 			quizDescription = quizService.getQuizDescription(d_day);

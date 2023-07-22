@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class QuizRequestDto {
-    private int optionId;
+    private int optionNumber;
 }

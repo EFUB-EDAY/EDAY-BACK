@@ -2,9 +2,7 @@ package efub.eday.edayback.domain.day.quiz.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import efub.eday.edayback.domain.day.dday.entity.Dday;
-import efub.eday.edayback.domain.day.quiz.entity.Options;
 import efub.eday.edayback.domain.day.quiz.entity.Quiz;
 import efub.eday.edayback.domain.day.quiz.repository.QuizRepository;
 import efub.eday.edayback.domain.day.title.entity.Title;
@@ -33,21 +31,16 @@ public class QuizService {
 	}
 
 	//퀴즈 정답 확인
-	public boolean checkAnswer(int d_day, int option_id, Long memberId) {
+	public boolean checkAnswer(int d_day, int optionNumber, Long memberId) {
 		Quiz quiz = findQuiz(d_day);
 
-		boolean isCorrect = false;
-		for (Options option : quiz.getOptionsList()) {
-			if (option.getOptionNumber() == option_id) {
-				isCorrect = option.getIsAnswer();
-				break;
-			}
-		}
+		boolean isCorrect = quiz.isAnswerOption(optionNumber);
 
+		//member title 찾는 로직
 		if (isCorrect) {
 			Member member = memberRepository.findById(memberId)
 				.orElseThrow(() -> new IllegalArgumentException("해당 멤버를 찾을 수 없습니다."));
-			Long subjectId = quiz.getSubject().getId();
+			Integer subjectId = quiz.getSubject().getId();
 			Title title = titleRepository.findBySubjectId(subjectId)
 				.orElseThrow(() -> new IllegalArgumentException("해당 subject_id에 대한 타이틀을 찾을 수 없습니다."));
 			MemberTitle memberTitle = memberTitleRepository.findByMemberAndTitle(member, title)
@@ -59,7 +52,6 @@ public class QuizService {
 			}
 			//getTitle값 true로 변경
 			memberTitle.setGetTitle(true);
-			memberTitleRepository.save(memberTitle);
 		}
 		return isCorrect;
 	}
