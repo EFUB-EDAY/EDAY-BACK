@@ -7,18 +7,18 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
+import jakarta.persistence.Table;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Table(name = "subjects")
 public class Subject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "subject_id")
-	private Long id;
+	private Integer id;
 
 	@Enumerated(value = EnumType.ORDINAL)
 	@Column(name = "d_day", nullable = false)

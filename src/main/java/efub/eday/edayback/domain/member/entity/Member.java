@@ -9,13 +9,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
 @NoArgsConstructor
+@Table(name = "members")
 public class Member {
 
 	@Id
@@ -23,7 +26,7 @@ public class Member {
 	@Column(name = "member_id")
 	private Long id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	private String nickname;
 
 	@Column(nullable = false)
@@ -32,7 +35,7 @@ public class Member {
 	@Column(name = "profile_image_url", nullable = false)
 	private String profileImageUrl;
 
-	@Column(nullable = false)
+	@Column(name = "grade", nullable = false)
 	private Integer level;
 
 	@CreationTimestamp   //insert할 때 자동 날짜 적용
