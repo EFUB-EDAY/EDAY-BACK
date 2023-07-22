@@ -10,7 +10,13 @@ import javax.persistence.OneToOne;
 
 import efub.eday.edayback.domain.day.dday.entity.Subject;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 @Entity
+@NoArgsConstructor
+@Getter
 public class Title {
 
 	@Id
@@ -27,4 +33,11 @@ public class Title {
 	@OneToOne
 	@JoinColumn(name = "subject_id", nullable = false)
 	private Subject subject;
+
+	@Builder
+	public Title(String name, String imageUrl, Subject subject) {
+		this.name = name;
+		this.imageUrl = imageUrl;
+		this.subject = subject;
+	}
 }

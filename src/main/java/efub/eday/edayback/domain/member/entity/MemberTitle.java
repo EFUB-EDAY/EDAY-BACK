@@ -12,6 +12,7 @@ import efub.eday.edayback.domain.day.title.entity.Title;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class MemberTitle {
 
@@ -30,4 +31,11 @@ public class MemberTitle {
 	@ManyToOne
 	@JoinColumn(name = "title_id", nullable = false)
 	private Title title;
+
+	@Builder
+	public MemberTitle(Boolean getTitle, Member member, Title title) {
+		this.getTitle = getTitle;
+		this.member = member;
+		this.title = title;
+	}
 }
