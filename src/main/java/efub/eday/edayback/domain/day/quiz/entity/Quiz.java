@@ -1,14 +1,24 @@
 package efub.eday.edayback.domain.day.quiz.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import efub.eday.edayback.domain.day.dday.entity.Subject;
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.util.List;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Quiz {
 
 	@Id
