@@ -14,9 +14,11 @@ import javax.persistence.OneToOne;
 import efub.eday.edayback.domain.day.dday.entity.Subject;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Quiz {
 
 	@Id
