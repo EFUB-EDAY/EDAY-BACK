@@ -1,4 +1,4 @@
-package efub.eday.edayback.config;
+package efub.eday.edayback.jwt;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import efub.eday.edayback.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

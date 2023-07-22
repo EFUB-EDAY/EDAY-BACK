@@ -1,4 +1,4 @@
-package efub.eday.edayback.domain.member.auth.service.feign;
+package efub.eday.edayback.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;

@@ -8,7 +8,7 @@ import feign.Logger;
 import feign.RequestInterceptor;
 
 @Configuration
-@EnableFeignClients("efub.eday.edayback.domain.member.auth.service.feign")
+@EnableFeignClients("efub.eday.edayback.feign")
 public class FeignConfig {
 
 	@Bean

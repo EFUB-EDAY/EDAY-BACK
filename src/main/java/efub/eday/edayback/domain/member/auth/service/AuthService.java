@@ -8,11 +8,11 @@ import efub.eday.edayback.domain.member.auth.dto.AuthResponseDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoProfileResponseDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoTokenRequestDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoTokenResponseDto;
-import efub.eday.edayback.domain.member.auth.service.feign.KakaoApiFeign;
-import efub.eday.edayback.domain.member.auth.service.feign.KakaoAuthFeign;
-import efub.eday.edayback.domain.member.auth.service.jwt.JwtProvider;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.repository.MemberRepository;
+import efub.eday.edayback.feign.KakaoApiFeign;
+import efub.eday.edayback.feign.KakaoAuthFeign;
+import efub.eday.edayback.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

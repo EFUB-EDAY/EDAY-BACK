@@ -1,4 +1,4 @@
-package efub.eday.edayback.domain.member.auth.service.jwt;
+package efub.eday.edayback.jwt;
 
 import java.time.Duration;
 import java.util.Base64;

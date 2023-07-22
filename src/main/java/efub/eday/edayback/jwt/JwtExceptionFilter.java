@@ -1,4 +1,4 @@
-package efub.eday.edayback.config;
+package efub.eday.edayback.jwt;
 
 import java.io.IOException;
 
