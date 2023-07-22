@@ -8,7 +8,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Builder;
+import lombok.Setter;
 
+@Setter
 @Entity
 public class MemberQuiz {
 
@@ -27,4 +30,11 @@ public class MemberQuiz {
 	@ManyToOne
 	@JoinColumn(name = "quiz_id", nullable = false)
 	private Quiz quiz;
+
+	@Builder
+	public MemberQuiz(boolean isCorrect, Member member, Quiz quiz){
+		this.isCorrect = isCorrect;
+		this.member = member;
+		this.quiz = quiz;
+	}
 }
