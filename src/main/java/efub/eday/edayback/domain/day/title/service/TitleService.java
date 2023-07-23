@@ -32,10 +32,9 @@ public class TitleService {
 
 		MemberProfileDto profile = new MemberProfileDto(
 			member.getNickname(),
-			member.getEmail(),
 			member.getProfileImageUrl(),
 			member.getLevel(),
-			member.getCreatedDate().atStartOfDay(),
+			member.getCreatedDate(),
 			member.getIsActive()
 		);
 

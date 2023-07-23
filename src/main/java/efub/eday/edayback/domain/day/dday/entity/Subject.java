@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 @Getter
@@ -36,5 +37,11 @@ public class Subject {
 
 	public String getHeadline() {
 		return headline;
+	}
+
+	@Builder
+	public Subject(Dday dday, String headline) {
+		this.dday = dday;
+		this.headline = headline;
 	}
 }
