@@ -22,7 +22,7 @@ public class Subject {
 	@Column(name = "subject_id")
 	private Integer id;
 
-	@Enumerated(value = EnumType.ORDINAL)
+	@Enumerated(value = EnumType.STRING)
 	@Column(name = "d_day", nullable = false)
 	private Dday dday;
 

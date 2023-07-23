@@ -1,20 +1,20 @@
 package efub.eday.edayback.domain.member.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
@@ -32,7 +32,7 @@ public class Member {
 	private String nickname;
 
 	@Column(nullable = false)
-	private String email;
+	private Long loginId;
 
 	@Column(name = "profile_image_url", nullable = false)
 	private String profileImageUrl;
@@ -42,17 +42,22 @@ public class Member {
 
 	@CreationTimestamp   //insert할 때 자동 날짜 적용
 	@Column(nullable = false)
-	private LocalDate createdDate;
+	private LocalDateTime createdDate;
 
 	@Column(nullable = false)
 	private Boolean isActive;
 
 	@Builder
-	public Member(String nickname, String email, String profileImageUrl, Integer level, Boolean isActive) {
+	public Member(String nickname, Long loginId, String profileImageUrl) {
 		this.nickname = nickname;
-		this.email = email;
+		this.loginId = loginId;
 		this.profileImageUrl = profileImageUrl;
-		this.level = level;
-		this.isActive = isActive;
+		this.level = 1;
+		this.isActive = true;
+	}
+
+	public void updateProfile(String nickname, String profileImageUrl) {
+		this.nickname = nickname;
+		this.profileImageUrl = profileImageUrl;
 	}
 }

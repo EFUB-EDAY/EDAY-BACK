@@ -1,21 +1,20 @@
 package efub.eday.edayback.domain.member.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import efub.eday.edayback.domain.day.title.entity.Title;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
+@Getter
 @NoArgsConstructor
 public class MemberTitle {
 
@@ -36,7 +35,7 @@ public class MemberTitle {
 	private Title title;
 
 	@Builder
-	public MemberTitle(boolean getTitle, Member member, Title title) {
+	public MemberTitle(Boolean getTitle, Member member, Title title) {
 		this.getTitle = getTitle;
 		this.member = member;
 		this.title = title;
