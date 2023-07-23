@@ -8,15 +8,18 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OptionsResponseDto {
+	private Integer optionNumber;
 	private String content;
 
-	private OptionsResponseDto(String content) {
+	private OptionsResponseDto(Integer optionNumber, String content) {
+		this.optionNumber = optionNumber;
 		this.content = content;
 	}
 
 	public static OptionsResponseDto from(Option option) {
 		return new OptionsResponseDto(
-			option.getContent()
+				option.getOptionNumber(),
+				option.getContent()
 		);
 	}
 }

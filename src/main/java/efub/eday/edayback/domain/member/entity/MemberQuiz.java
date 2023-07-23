@@ -9,8 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import efub.eday.edayback.domain.day.quiz.entity.Quiz;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Setter
+@NoArgsConstructor
 public class MemberQuiz {
 
 	@Id
@@ -28,4 +33,11 @@ public class MemberQuiz {
 	@ManyToOne
 	@JoinColumn(name = "quiz_id", nullable = false)
 	private Quiz quiz;
+
+	@Builder
+	public MemberQuiz(Boolean isCorrect, Member member, Quiz quiz) {
+		this.isCorrect = isCorrect;
+		this.member = member;
+		this.quiz = quiz;
+	}
 }

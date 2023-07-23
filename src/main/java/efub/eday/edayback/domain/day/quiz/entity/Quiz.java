@@ -36,11 +36,21 @@ public class Quiz {
 	private String imageUrl;
 
 	@OneToOne
-	@JoinColumn(name = "d_day_id", nullable = false)
+	@JoinColumn(name = "subject_id", nullable = false)
 	private Subject subject;
 
 	@OneToMany(mappedBy = "quiz")
 	private List<Option> optionList;
+
+	//퀴즈 정답 확인 로직
+	public boolean isAnswerOption(int optionNumber) {
+		for (Option option : optionList) {
+			if (option.getOptionNumber() == optionNumber) {
+				return option.getIsAnswer();
+			}
+		}
+		return false;
+	}
 
 	@Builder
 	public Quiz(String content, String explanation, String imageUrl, Subject subject, List<Option> optionList) {
@@ -50,4 +60,5 @@ public class Quiz {
 		this.subject = subject;
 		this.optionList = optionList;
 	}
+
 }
