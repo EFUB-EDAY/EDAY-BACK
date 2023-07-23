@@ -5,7 +5,6 @@ import lombok.Setter;
 
 /*
 {
-	"memberId" : 1,
     "queryContent" : "D-3 내용 문의드립니다!",
 	"dday" : 3
 }
@@ -14,7 +13,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class QueryRequestDto {
-	private Long memberId;
 	private String queryContent;
 	private int dday;
 }
