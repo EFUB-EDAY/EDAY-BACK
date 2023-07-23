@@ -2,6 +2,8 @@ package efub.eday.edayback.domain.member.auth.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import efub.eday.edayback.domain.member.auth.dto.AuthResponseDto;
@@ -91,5 +93,12 @@ public class AuthService {
 
 	private void signUp(Member member) {
 		memberRepository.save(member);
+	}
+
+	public Member getCurrentMember() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String principalName = authentication.getName();
+		Long memberId = Long.parseLong(principalName);
+		return memberRepository.findById(memberId).orElseThrow(IllegalArgumentException::new);
 	}
 }
