@@ -1,4 +1,4 @@
-package efub.eday.edayback.config;
+package efub.eday.edayback.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +8,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import efub.eday.edayback.jwt.JwtExceptionFilter;
-import efub.eday.edayback.jwt.JwtFilter;
-import efub.eday.edayback.jwt.JwtProvider;
+import efub.eday.edayback.global.jwt.JwtExceptionFilter;
+import efub.eday.edayback.global.jwt.JwtFilter;
+import efub.eday.edayback.global.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +32,7 @@ public class AuthenticationConfig {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 대신 jwt 사용하는 경우 사용
 			.and()
 			.authorizeRequests()
-			.antMatchers("/member/auth").permitAll()
+			.antMatchers("/member/auth", "/docs", "/swagger-ui/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)

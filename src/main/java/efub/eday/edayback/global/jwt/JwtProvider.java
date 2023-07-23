@@ -1,4 +1,4 @@
-package efub.eday.edayback.jwt;
+package efub.eday.edayback.global.jwt;
 
 import java.time.Duration;
 import java.util.Base64;

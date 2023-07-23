@@ -1,4 +1,4 @@
-package efub.eday.edayback.feign;
+package efub.eday.edayback.global.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.HttpHeaders;
