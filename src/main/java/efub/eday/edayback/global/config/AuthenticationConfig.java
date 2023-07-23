@@ -32,7 +32,7 @@ public class AuthenticationConfig {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 대신 jwt 사용하는 경우 사용
 			.and()
 			.authorizeRequests()
-			.antMatchers("/member/auth", "/docs", "/swagger-ui/**").permitAll()
+			.antMatchers("/member/auth", "/docs", "/swagger-ui/*", "/v3/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.addFilterBefore(new JwtFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
