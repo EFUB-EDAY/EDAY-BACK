@@ -24,7 +24,7 @@ public class TitleService {
 	private final MemberTitleRepository memberTitleRepository;
 
 	@Transactional(readOnly = true)
-	public TitleResponseDto getTitlePage(Integer memberId) {
+	public TitleResponseDto getTitlePage(Long memberId) {
 		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> new IllegalArgumentException("해당하는 회원이 없습니다. ID: " + memberId));
 
@@ -32,10 +32,9 @@ public class TitleService {
 
 		MemberProfileDto profile = new MemberProfileDto(
 			member.getNickname(),
-			member.getEmail(),
 			member.getProfileImageUrl(),
 			member.getLevel(),
-			member.getCreatedDate().atStartOfDay(),
+			member.getCreatedDate(),
 			member.getIsActive()
 		);
 

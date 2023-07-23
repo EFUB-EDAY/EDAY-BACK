@@ -12,7 +12,7 @@ import lombok.Getter;
 
 @Getter
 public class QueryRequestDto {
-	private int memberId;
+	private Long memberId;
 	private String queryContent;
 	private int dday;
 }
