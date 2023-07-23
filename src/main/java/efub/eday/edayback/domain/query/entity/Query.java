@@ -24,7 +24,7 @@ public class Query {
 	@Column(name = "query_id")
 	private Integer id;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 500)
 	private String content;
 
 	@ManyToOne
