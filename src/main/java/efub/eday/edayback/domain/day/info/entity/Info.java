@@ -2,15 +2,16 @@ package efub.eday.edayback.domain.day.info.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import efub.eday.edayback.domain.day.dday.entity.Subject;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,10 +24,10 @@ public class Info {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "info_id")
-	private Long id;
+	private Integer id;
 
 	@OneToOne
-	@JoinColumn(name = "subject_id", nullable = false)
+	@JoinColumn(name = "subject_id", nullable = false, unique = true)
 	private Subject subject;
 
 	@OneToMany(mappedBy = "info")

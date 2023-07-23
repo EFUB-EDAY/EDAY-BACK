@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.info.entity.Info;
 
-public interface InfoRepository extends JpaRepository<Info, Long> {
+public interface InfoRepository extends JpaRepository<Info, Integer> {
 	Optional<Info> findInfoBySubject_Dday(Dday dday);
 }

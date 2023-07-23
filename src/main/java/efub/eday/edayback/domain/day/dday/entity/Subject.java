@@ -1,26 +1,30 @@
 package efub.eday.edayback.domain.day.dday.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Getter;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+@Getter
 @Entity
 @NoArgsConstructor
-@Getter
+@Table(name = "subjects")
 public class Subject {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "subject_id")
-	private Long id;
+	private Integer id;
 
-	@Enumerated(value = EnumType.ORDINAL)
+	@Enumerated(value = EnumType.STRING)
 	@Column(name = "d_day", nullable = false)
 	private Dday dday;
 
@@ -33,5 +37,11 @@ public class Subject {
 
 	public String getHeadline() {
 		return headline;
+	}
+
+	@Builder
+	public Subject(Dday dday, String headline) {
+		this.dday = dday;
+		this.headline = headline;
 	}
 }
