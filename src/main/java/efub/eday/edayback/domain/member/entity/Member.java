@@ -9,17 +9,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@Entity
 @Table(name = "members")
 public class Member {
 
@@ -48,7 +48,7 @@ public class Member {
 	private Boolean isActive;
 
 	@Builder
-	public Member(String nickname, Long loginId, String profileImageUrl) {
+	public Member(Long loginId, String nickname, String profileImageUrl) {
 		this.nickname = nickname;
 		this.loginId = loginId;
 		this.profileImageUrl = profileImageUrl;

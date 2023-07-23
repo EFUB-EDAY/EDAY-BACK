@@ -9,12 +9,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import efub.eday.edayback.domain.day.title.entity.Title;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
 @Setter
-@Entity
 @Getter
+@Entity
 @NoArgsConstructor
 public class MemberTitle {
 

@@ -12,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import efub.eday.edayback.domain.day.dday.entity.Subject;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,9 +43,9 @@ public class Quiz {
 	private List<Option> optionList;
 
 	//퀴즈 정답 확인 로직
-	public boolean isAnswerOption(int optionNumber){
-		for(Option option : optionList){
-			if(option.getOptionNumber() == optionNumber){
+	public boolean isAnswerOption(int optionNumber) {
+		for (Option option : optionList) {
+			if (option.getOptionNumber() == optionNumber) {
 				return option.getIsAnswer();
 			}
 		}
