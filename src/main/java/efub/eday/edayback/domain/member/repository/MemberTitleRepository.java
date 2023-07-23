@@ -1,4 +1,4 @@
-package efub.eday.edayback.domain.day.title.repository;
+package efub.eday.edayback.domain.member.repository;
 
 import java.util.List;
 import java.util.Optional;

@@ -10,10 +10,10 @@ import efub.eday.edayback.domain.day.title.dto.MemberProfileDto;
 import efub.eday.edayback.domain.day.title.dto.TitleDto;
 import efub.eday.edayback.domain.day.title.dto.TitleResponseDto;
 import efub.eday.edayback.domain.day.title.entity.Title;
-import efub.eday.edayback.domain.day.title.repository.MemberTitleRepository;
 import efub.eday.edayback.domain.member.auth.service.AuthService;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.MemberTitle;
+import efub.eday.edayback.domain.member.repository.MemberTitleRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

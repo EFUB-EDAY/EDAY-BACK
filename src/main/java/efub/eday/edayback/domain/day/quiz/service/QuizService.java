@@ -7,13 +7,13 @@ import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.quiz.entity.Quiz;
 import efub.eday.edayback.domain.day.quiz.repository.QuizRepository;
 import efub.eday.edayback.domain.day.title.entity.Title;
-import efub.eday.edayback.domain.day.title.repository.MemberTitleRepository;
 import efub.eday.edayback.domain.day.title.repository.TitleRepository;
 import efub.eday.edayback.domain.member.auth.service.AuthService;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.MemberQuiz;
 import efub.eday.edayback.domain.member.entity.MemberTitle;
 import efub.eday.edayback.domain.member.repository.MemberQuizRepository;
+import efub.eday.edayback.domain.member.repository.MemberTitleRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
