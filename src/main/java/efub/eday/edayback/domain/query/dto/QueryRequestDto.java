@@ -1,6 +1,7 @@
 package efub.eday.edayback.domain.query.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /*
 {
@@ -11,6 +12,7 @@ import lombok.Getter;
  */
 
 @Getter
+@Setter
 public class QueryRequestDto {
 	private Long memberId;
 	private String queryContent;

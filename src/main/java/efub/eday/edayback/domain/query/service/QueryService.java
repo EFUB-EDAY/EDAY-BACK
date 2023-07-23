@@ -8,7 +8,6 @@ import efub.eday.edayback.domain.day.dday.entity.Subject;
 import efub.eday.edayback.domain.day.dday.repository.SubjectRepository;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.repository.MemberRepository;
-import efub.eday.edayback.domain.member.service.MemberService;
 import efub.eday.edayback.domain.query.dto.QueryRequestDto;
 import efub.eday.edayback.domain.query.entity.Query;
 import efub.eday.edayback.domain.query.repository.QueryRepository;
@@ -19,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QueryService {
 	private final QueryRepository queryRepository;
-	private final MemberService memberService;
 	private final MemberRepository memberRepository;
 	private final SubjectRepository subjectRepository;
 
