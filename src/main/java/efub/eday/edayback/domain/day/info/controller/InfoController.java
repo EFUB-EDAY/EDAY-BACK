@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.info.dto.InfoDto;
@@ -24,11 +23,7 @@ public class InfoController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public InfoDto getInfoByDday(@PathVariable("d_day") int dday) {
 		Dday ddayEnum = Dday.fromRemainingDays(dday);
-		try {
-			Info info = infoService.getInfoByDday(ddayEnum);
-			return InfoDto.from(info);
-		} catch (ResponseStatusException message) {
-			throw message;
-		}
+		Info info = infoService.getInfoByDday(ddayEnum);
+		return InfoDto.from(info);
 	}
 }
