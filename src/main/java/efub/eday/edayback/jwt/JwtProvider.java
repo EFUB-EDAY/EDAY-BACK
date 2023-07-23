@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Service
 public class JwtProvider {
-	private static final Long ACCESS_TOKEN_VALID_TIME = Duration.ofMinutes(30).toMillis(); // 만료시간 30분
+	private static final Long ACCESS_TOKEN_VALID_TIME = Duration.ofDays(14).toMillis(); // 만료시간 30분
 	private static final Long REFRESH_TOKEN_VALID_TIME = Duration.ofDays(14).toMillis(); // 만료시간 2주
 	private static final String MEMBER_ID = "memberId";
 	private static final String TOKEN_TYPE = "type";
@@ -49,7 +49,7 @@ public class JwtProvider {
 
 	// access 토큰 생성
 	public String createAccessToken(Long memberId) {
-		return createJwt(memberId, TokenType.REFRESH.type, ACCESS_TOKEN_VALID_TIME);
+		return createJwt(memberId, TokenType.ACCESS.type, ACCESS_TOKEN_VALID_TIME);
 	}
 
 	// refresh 토큰 생성
