@@ -35,8 +35,8 @@ public class MemberQuiz {
 	private Quiz quiz;
 
 	@Builder
-	public MemberQuiz(Boolean isCorrect, Member member, Quiz quiz) {
-		this.isCorrect = isCorrect;
+	public MemberQuiz(Member member, Quiz quiz) {
+		this.isCorrect = false;
 		this.member = member;
 		this.quiz = quiz;
 	}

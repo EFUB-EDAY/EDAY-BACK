@@ -37,8 +37,8 @@ public class MemberTitle {
 	private Title title;
 
 	@Builder
-	public MemberTitle(Boolean getTitle, Member member, Title title) {
-		this.getTitle = getTitle;
+	public MemberTitle(Member member, Title title) {
+		this.getTitle = false;
 		this.member = member;
 		this.title = title;
 	}
