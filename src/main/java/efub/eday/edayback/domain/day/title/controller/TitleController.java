@@ -2,7 +2,6 @@ package efub.eday.edayback.domain.day.title.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +16,9 @@ public class TitleController {
 
 	private final TitleService titleService;
 
-	@GetMapping("/{member_id}")
-	public ResponseEntity<TitleResponseDto> getTitlePage(@PathVariable("member_id") Integer memberId) {
-		TitleResponseDto titleResponseDto = titleService.getTitlePage(memberId);
+	@GetMapping()
+	public ResponseEntity<TitleResponseDto> getTitlePage() {
+		TitleResponseDto titleResponseDto = titleService.getTitlePage();
 		return ResponseEntity.ok(titleResponseDto);
 	}
 }

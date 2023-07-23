@@ -11,22 +11,21 @@ import efub.eday.edayback.domain.day.title.dto.TitleDto;
 import efub.eday.edayback.domain.day.title.dto.TitleResponseDto;
 import efub.eday.edayback.domain.day.title.entity.Title;
 import efub.eday.edayback.domain.day.title.repository.MemberTitleRepository;
+import efub.eday.edayback.domain.member.auth.service.AuthService;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.MemberTitle;
-import efub.eday.edayback.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class TitleService {
 
-	private final MemberRepository memberRepository;
 	private final MemberTitleRepository memberTitleRepository;
+	private final AuthService authService;
 
 	@Transactional(readOnly = true)
-	public TitleResponseDto getTitlePage(Long memberId) {
-		Member member = memberRepository.findById(memberId)
-			.orElseThrow(() -> new IllegalArgumentException("해당하는 회원이 없습니다. ID: " + memberId));
+	public TitleResponseDto getTitlePage() {
+		Member member = authService.getCurrentMember();
 
 		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
 
