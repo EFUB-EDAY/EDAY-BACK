@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import efub.eday.edayback.domain.member.auth.service.AuthService;
 import efub.eday.edayback.domain.member.entity.Member;
@@ -24,8 +25,12 @@ public class QueryController {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Query addquery(@RequestBody QueryRequestDto requestDto) {
-		Member writer = authService.getCurrentMember(); // 로그인된 유저 정보 가져오기
-		requestDto.setMemberId(writer.getId()); // 가져온 유저 정보의 ID를 QueryRequestDto에 설정
-		return queryService.addQuery(requestDto);
+		try {
+			Member writer = authService.getCurrentMember(); // 로그인된 유저 정보 가져오기
+			requestDto.setMemberId(writer.getId()); // 가져온 유저 정보의 ID를 QueryRequestDto에 설정
+			return queryService.addQuery(requestDto);
+		} catch (ResponseStatusException message) {
+			throw message;
+		}
 	}
 }
