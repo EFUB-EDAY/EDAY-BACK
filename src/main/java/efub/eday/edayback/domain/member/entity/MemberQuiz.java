@@ -16,7 +16,9 @@ import lombok.Setter;
 @Entity
 @Setter
 @NoArgsConstructor
-public class MemberQuiz {
+public class
+
+MemberQuiz {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

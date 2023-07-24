@@ -1,10 +1,5 @@
 package efub.eday.edayback.domain.member.service;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +8,7 @@ import efub.eday.edayback.domain.day.title.repository.TitleRepository;
 import efub.eday.edayback.domain.member.auth.service.AuthService;
 import efub.eday.edayback.domain.member.dto.ProfileDto;
 import efub.eday.edayback.domain.member.dto.ProfileResDto;
-import efub.eday.edayback.domain.member.dto.QuizDto;
-import efub.eday.edayback.domain.member.dto.QuizListDto;
 import efub.eday.edayback.domain.member.entity.Member;
-import efub.eday.edayback.domain.member.entity.MemberTitle;
 import efub.eday.edayback.domain.member.repository.MemberTitleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,9 +26,20 @@ public class MemberService {
 	public ProfileResDto getMember() {
 		Member member = authService.getCurrentMember();
 
-		ProfileDto profile = new ProfileDto(member);
-		Title title = titleRepository.findBySubjectId(profile.getDDay()).orElseThrow(IllegalArgumentException::new);
-		profile.setTitleName(title.getName());
+		//return new ProfileDto(member);
+		Integer subjectId = Integer.valueOf(7 - member.getLevel());
+
+		Title title = titleRepository.findBySubjectId(subjectId)
+			.orElseThrow(() -> new IllegalArgumentException("해당 subject_id에 대한 타이틀을 찾을 수 없습니다."));
+
+		ProfileDto profile = new ProfileDto(
+			member.getNickname(),
+			member.getProfileImageUrl(),
+			member.getLevel(),
+			title.getName()
+		);
+
+		/*
 
 		// 현재 날짜와 데이터베이스에 저장된 날짜 사이의 차이 계산
 		LocalDateTime currentDate = LocalDateTime.now();
@@ -55,8 +58,8 @@ public class MemberService {
 		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
 		for (MemberTitle memberTitle : memberTitles) {
 			if (memberTitle.getGetTitle()) {
-				int dDay = memberTitle.getTitle().getSubject().getDday();
-				doneList.add(new QuizDto(dDay));
+				int subject = memberTitle.getTitle().getSubject().getDday();
+				doneList.add(new QuizDto(subject));
 			}
 		}
 
@@ -69,8 +72,10 @@ public class MemberService {
 		quizListDto.setOpenList(openList);
 		quizListDto.setDoneList(doneList);
 		quizListDto.setCloseList(closeList);
+		*/
 
-		return new ProfileResDto(profile, quizListDto);
+		//return new ProfileResDto(profile, quizListDto);
+		return new ProfileResDto(profile);
 	}
 
 }

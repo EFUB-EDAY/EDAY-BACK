@@ -1,6 +1,5 @@
 package efub.eday.edayback.domain.member.dto;
 
-import efub.eday.edayback.domain.member.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,10 +16,11 @@ public class ProfileDto {
 	private String titleName;
 
 	@Builder
-	public ProfileDto(Member member) {
-		this.nickname = member.getNickname();
-		this.profileImageUrl = member.getProfileImageUrl();
-		this.level = member.getLevel();
-		this.dDay = 7 - member.getLevel();
+	public ProfileDto(String nickname, String profileImageUrl, int level, String titleName) {
+		this.nickname = nickname;
+		this.profileImageUrl = profileImageUrl;
+		this.level = level;
+		this.dDay = 7 - level;
+		this.titleName = titleName;
 	}
 }
