@@ -27,8 +27,6 @@ public class AuthenticationConfig {
 		return httpSecurity
 			.httpBasic().disable()
 			.csrf().disable()
-			.cors()
-			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 대신 jwt 사용하는 경우 사용
 			.and()
 			.authorizeRequests()
