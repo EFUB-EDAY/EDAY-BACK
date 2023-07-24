@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import efub.eday.edayback.domain.day.quiz.entity.Quiz;
 import efub.eday.edayback.domain.day.quiz.repository.QuizRepository;
+import efub.eday.edayback.domain.day.title.entity.Title;
 import efub.eday.edayback.domain.day.title.repository.TitleRepository;
 import efub.eday.edayback.domain.member.auth.dto.AuthResponseDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoProfileResponseDto;
@@ -19,6 +20,7 @@ import efub.eday.edayback.domain.member.auth.dto.KakaoTokenRequestDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoTokenResponseDto;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.MemberQuiz;
+import efub.eday.edayback.domain.member.entity.MemberTitle;
 import efub.eday.edayback.domain.member.repository.MemberQuizRepository;
 import efub.eday.edayback.domain.member.repository.MemberRepository;
 import efub.eday.edayback.domain.member.repository.MemberTitleRepository;
@@ -113,6 +115,12 @@ public class AuthService {
 		for (Quiz quiz : quizs) {
 			MemberQuiz mQuiz = new MemberQuiz(member, quiz);
 			memberQuizRepository.save(mQuiz);
+		}
+
+		List<Title> titles = titleRepository.findAll();
+		for (Title title : titles) {
+			MemberTitle mTitle = new MemberTitle(member, title);
+			memberTitleRepository.save(mTitle);
 		}
 
 	}
