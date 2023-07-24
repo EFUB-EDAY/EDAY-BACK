@@ -1,5 +1,7 @@
 package efub.eday.edayback.domain.member.auth.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -8,12 +10,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import efub.eday.edayback.domain.day.quiz.entity.Quiz;
+import efub.eday.edayback.domain.day.quiz.repository.QuizRepository;
+import efub.eday.edayback.domain.day.title.repository.TitleRepository;
 import efub.eday.edayback.domain.member.auth.dto.AuthResponseDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoProfileResponseDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoTokenRequestDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoTokenResponseDto;
 import efub.eday.edayback.domain.member.entity.Member;
+import efub.eday.edayback.domain.member.entity.MemberQuiz;
+import efub.eday.edayback.domain.member.repository.MemberQuizRepository;
 import efub.eday.edayback.domain.member.repository.MemberRepository;
+import efub.eday.edayback.domain.member.repository.MemberTitleRepository;
 import efub.eday.edayback.global.feign.KakaoApiFeign;
 import efub.eday.edayback.global.feign.KakaoAuthFeign;
 import efub.eday.edayback.global.jwt.JwtProvider;
@@ -31,6 +39,10 @@ public class AuthService {
 	private final KakaoAuthFeign kakaoAuthFeign;
 	private final KakaoApiFeign kakaoApiFeign;
 	private final MemberRepository memberRepository;
+	private final QuizRepository quizRepository;
+	private final MemberQuizRepository memberQuizRepository;
+	private final TitleRepository titleRepository;
+	private final MemberTitleRepository memberTitleRepository;
 	private final JwtProvider jwtProvider;
 
 	@Value("${kakao.client-id}")
@@ -94,7 +106,15 @@ public class AuthService {
 	}
 
 	private void signUp(Member member) {
+
 		memberRepository.save(member);
+
+		List<Quiz> quizs = quizRepository.findAll();
+		for (Quiz quiz : quizs) {
+			MemberQuiz mQuiz = new MemberQuiz(member, quiz);
+			memberQuizRepository.save(mQuiz);
+		}
+
 	}
 
 	public Member getCurrentMember() {
