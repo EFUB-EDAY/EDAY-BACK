@@ -1,9 +1,12 @@
 package efub.eday.edayback.domain.member.service;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import efub.eday.edayback.domain.day.title.entity.Title;
 import efub.eday.edayback.domain.day.title.repository.TitleRepository;
@@ -27,7 +30,7 @@ public class MemberService {
 	private final TitleRepository titleRepository;
 	private final MemberTitleRepository memberTitleRepository;
 
-	//@Transactional(readOnly = true)
+	@Transactional(readOnly = true)
 	public ProfileResDto getMember() {
 		//현재 로그인 중인 사용자 정보 불러오기
 		Member member = authService.getCurrentMember();
@@ -43,20 +46,19 @@ public class MemberService {
 			member.getLevel(),
 			title.getName());
 
-		/*
 		// 현재 날짜와 데이터베이스에 저장된 날짜 사이의 차이 계산
 		LocalDateTime currentDate = LocalDateTime.now();
 		int differenceInDays = Math.toIntExact(ChronoUnit.DAYS.between(member.getCreatedDate(), currentDate));
 		if (differenceInDays >= 7) {
 			differenceInDays = 7;
 		}
-		*/
-		int differenceInDays = 2;
 
 		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
 		List<QuizDto> openList = new ArrayList<>();
 		for (int dDay = 7; dDay >= 7 - differenceInDays; dDay--) {
-			openList.add(new QuizDto(dDay));
+			if (dDay != 0) {
+				openList.add(new QuizDto(dDay));
+			}
 		}
 
 		List<QuizDto> doneList = new ArrayList<>();
