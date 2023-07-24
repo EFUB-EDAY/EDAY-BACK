@@ -1,6 +1,7 @@
 package efub.eday.edayback.domain.day.quiz.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,15 +35,21 @@ public class QuizController {
 
 	//퀴즈 정답 확인
 	@PostMapping
-	public QuizAnswerResponseDto checkAnswer(
+	public ResponseEntity<QuizAnswerResponseDto> checkAnswer(
 		@PathVariable int dDay,
 		@RequestBody QuizRequestDto quizRequestDto
 	) {
-		boolean isCorrect = quizService.checkAnswer(dDay, quizRequestDto.getOptionNumber());
+		boolean isCorrect;
 		String quizDescription = null;
-		if (isCorrect) {
-			quizDescription = quizService.getQuizDescription(dDay);
+		try {
+			isCorrect = quizService.checkAnswer(dDay, quizRequestDto.getOptionNumber());
+			if (isCorrect) {
+				quizDescription = quizService.getQuizDescription(dDay);
+			}
+		} catch (IllegalArgumentException e) {
+			String errorMessage = e.getMessage();
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new QuizAnswerResponseDto(false, errorMessage));
 		}
-		return new QuizAnswerResponseDto(isCorrect, quizDescription);
+		return ResponseEntity.ok(new QuizAnswerResponseDto(isCorrect, quizDescription));
 	}
 }

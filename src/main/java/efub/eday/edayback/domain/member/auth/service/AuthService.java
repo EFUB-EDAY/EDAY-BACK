@@ -2,9 +2,11 @@ package efub.eday.edayback.domain.member.auth.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import efub.eday.edayback.domain.member.auth.dto.AuthResponseDto;
 import efub.eday.edayback.domain.member.auth.dto.KakaoProfileResponseDto;
@@ -99,6 +101,7 @@ public class AuthService {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String principalName = authentication.getName();
 		Long memberId = Long.parseLong(principalName);
-		return memberRepository.findById(memberId).orElseThrow(IllegalArgumentException::new);
+		return memberRepository.findById(memberId).orElseThrow(() ->
+			new ResponseStatusException(HttpStatus.FORBIDDEN, "인증된 사용자 정보가 없습니다."));
 	}
 }
