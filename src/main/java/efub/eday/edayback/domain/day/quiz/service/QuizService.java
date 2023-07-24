@@ -31,7 +31,7 @@ public class QuizService {
 	public Quiz findQuiz(int d_day) {
 		Dday dday = Dday.fromRemainingDays(d_day);
 		return quizRepository.findBySubject_Dday(dday)
-			.orElseThrow(() -> new IllegalArgumentException("퀴즈를 찾을 수 없습니다."));
+			.orElseThrow(() -> new IllegalArgumentException("해당 날짜의 퀴즈를 찾을 수 없습니다."));
 	}
 
 	//퀴즈 정답 확인
