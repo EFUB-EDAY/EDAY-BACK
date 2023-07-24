@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import efub.eday.edayback.domain.query.dto.QueryRequestDto;
 import efub.eday.edayback.domain.query.entity.Query;
@@ -22,10 +21,6 @@ public class QueryController {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Query addquery(@RequestBody QueryRequestDto requestDto) {
-		try {
-			return queryService.addQuery(requestDto);
-		} catch (ResponseStatusException message) {
-			throw message;
-		}
+		return queryService.addQuery(requestDto);
 	}
 }

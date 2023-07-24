@@ -24,12 +24,7 @@ public class QueryService {
 	private final AuthService authService;
 
 	public Query addQuery(QueryRequestDto requestDto) {
-		Member writer;
-		try {
-			writer = authService.getCurrentMember(); // 로그인된 유저 정보 가져오기
-		} catch (ResponseStatusException ex) {
-			throw new ResponseStatusException(HttpStatus.FORBIDDEN, "인증된 사용자 정보가 없습니다.", ex);
-		}
+		Member writer = authService.getCurrentMember();
 
 		Dday dday = Dday.fromRemainingDays(requestDto.getDday());
 
