@@ -1,14 +1,19 @@
 package efub.eday.edayback.domain.member.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import efub.eday.edayback.domain.day.title.entity.Title;
 import efub.eday.edayback.domain.day.title.repository.TitleRepository;
 import efub.eday.edayback.domain.member.auth.service.AuthService;
 import efub.eday.edayback.domain.member.dto.ProfileDto;
 import efub.eday.edayback.domain.member.dto.ProfileResDto;
+import efub.eday.edayback.domain.member.dto.QuizDto;
+import efub.eday.edayback.domain.member.dto.QuizListDto;
 import efub.eday.edayback.domain.member.entity.Member;
+import efub.eday.edayback.domain.member.entity.MemberTitle;
 import efub.eday.edayback.domain.member.repository.MemberTitleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,34 +24,34 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 
 	private final AuthService authService;
-	private final MemberTitleRepository memberTitleRepository;
 	private final TitleRepository titleRepository;
+	private final MemberTitleRepository memberTitleRepository;
 
-	@Transactional(readOnly = true)
+	//@Transactional(readOnly = true)
 	public ProfileResDto getMember() {
+		//현재 로그인 중인 사용자 정보 불러오기
 		Member member = authService.getCurrentMember();
 
-		//return new ProfileDto(member);
-		Integer subjectId = Integer.valueOf(7 - member.getLevel());
+		int level = member.getLevel();
 
-		Title title = titleRepository.findBySubjectId(subjectId)
-			.orElseThrow(() -> new IllegalArgumentException("해당 subject_id에 대한 타이틀을 찾을 수 없습니다."));
+		//칭호는 dDay가 아닌 level을 기준으로 정해짐
+		Title title = titleRepository.findBySubjectId(level).orElseThrow();
 
-		ProfileDto profile = new ProfileDto(
-			member.getNickname(),
+		//profile부분에 들어갈 속성들
+		ProfileDto profile = new ProfileDto(member.getNickname(),
 			member.getProfileImageUrl(),
 			member.getLevel(),
-			title.getName()
-		);
+			title.getName());
 
 		/*
-
 		// 현재 날짜와 데이터베이스에 저장된 날짜 사이의 차이 계산
 		LocalDateTime currentDate = LocalDateTime.now();
 		int differenceInDays = Math.toIntExact(ChronoUnit.DAYS.between(member.getCreatedDate(), currentDate));
 		if (differenceInDays >= 7) {
 			differenceInDays = 7;
 		}
+		*/
+		int differenceInDays = 2;
 
 		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
 		List<QuizDto> openList = new ArrayList<>();
@@ -72,10 +77,8 @@ public class MemberService {
 		quizListDto.setOpenList(openList);
 		quizListDto.setDoneList(doneList);
 		quizListDto.setCloseList(closeList);
-		*/
 
-		//return new ProfileResDto(profile, quizListDto);
-		return new ProfileResDto(profile);
+		return new ProfileResDto(profile, quizListDto);
 	}
 
 }
