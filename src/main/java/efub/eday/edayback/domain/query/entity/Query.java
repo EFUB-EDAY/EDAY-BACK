@@ -32,7 +32,7 @@ public class Query {
 	private Member writer;
 
 	@ManyToOne
-	@JoinColumn(nullable = false)
+	@JoinColumn(name = "subject_id", nullable = false)
 	private Subject subject;
 
 	@Builder
