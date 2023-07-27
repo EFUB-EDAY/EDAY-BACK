@@ -26,7 +26,10 @@ public class AuthenticationConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
 			.httpBasic().disable()
+			.cors()
+			.and()
 			.csrf().disable()
+			.formLogin().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 대신 jwt 사용하는 경우 사용
 			.and()
 			.authorizeRequests()
