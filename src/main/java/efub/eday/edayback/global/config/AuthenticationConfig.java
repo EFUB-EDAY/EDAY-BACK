@@ -2,6 +2,7 @@ package efub.eday.edayback.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,14 +26,13 @@ public class AuthenticationConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
-			.httpBasic().disable()
-			.cors()
-			.and()
+			.httpBasic().and()
+			.cors().and()
 			.csrf().disable()
-			.formLogin().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션 대신 jwt 사용하는 경우 사용
 			.and()
 			.authorizeRequests()
+			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 			.antMatchers("/member/auth", "/docs", "/swagger-ui/*", "/v3/**").permitAll()
 			.anyRequest().authenticated()
 			.and()
@@ -40,4 +40,5 @@ public class AuthenticationConfig {
 			.addFilterBefore(new JwtExceptionFilter(), JwtFilter.class)
 			.build();
 	}
+
 }
