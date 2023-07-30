@@ -1,5 +1,6 @@
 package efub.eday.edayback.domain.member.auth.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -14,6 +15,7 @@ public class KakaoProfileResponseDto {
 	@NoArgsConstructor
 	public class KakaoAccount {
 
+		@Schema(description = "프로필 정보 from kakao")
 		private Profile profile;
 
 		@Setter
