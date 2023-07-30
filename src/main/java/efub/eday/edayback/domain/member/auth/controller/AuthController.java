@@ -31,7 +31,7 @@ public class AuthController {
 		@ApiResponse(responseCode = "200", description = "로그인 성공",
 			content = @Content(mediaType = "application/json",
 				schema = @Schema(implementation = AuthResponseDto.class))),
-		@ApiResponse(responseCode = "404", description = "로그인 실패(인증되지 않은 사용자)",
+		@ApiResponse(responseCode = "403", description = "로그인 실패(인증되지 않은 사용자)",
 			content = @Content(mediaType = "application/json",
 				schema = @Schema(implementation = AuthResponseDto.class)))
 	})
