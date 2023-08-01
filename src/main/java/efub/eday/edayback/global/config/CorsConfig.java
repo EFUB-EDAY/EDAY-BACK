@@ -12,7 +12,8 @@ public class CorsConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-			.allowedOrigins("http://localhost:3000", "https://api.ewha-day.com")
+			.allowedOrigins("http://localhost:3000", "https://api.ewha-day.com", "https://eday-front.vercel.app",
+				"https://eday-day.com")
 			.allowCredentials(true)
 			.allowedHeaders("Authorization", "Content-Type")
 			.exposedHeaders("Authorization")
