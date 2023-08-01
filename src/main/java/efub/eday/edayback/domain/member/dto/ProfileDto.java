@@ -26,7 +26,8 @@ public class ProfileDto {
 		this.nickname = nickname;
 		this.profileImageUrl = profileImageUrl;
 		this.level = level;
-		this.dDay = 7 - level;
+		//level이 1부터 시작하므로 dday는 8에서 빼는 것으로 수정
+		this.dDay = 8 - level;
 		this.titleName = titleName;
 	}
 }
