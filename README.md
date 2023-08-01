@@ -21,7 +21,7 @@
 |:-:|:-:|:-:|:-:|
 |<img src="https://avatars.githubusercontent.com/u/71026706?v=4"/>|<img src="https://avatars.githubusercontent.com/u/100260416?v=4"/>|<img src="https://avatars.githubusercontent.com/u/96541582?v=4"/>|<img src="https://avatars.githubusercontent.com/u/89291223?v=4"/>
 |[@mingulmangul](https://github.com/mingulmangul)|[@choiyounji](https://github.com/choiyounji)|[@chhaewxn](https://github.com/chhaewxn)|[@hannah0226](https://github.com/hannah0226)| 
-|프로젝트 세팅<br>엔티티 생성<br>CI/CD 환경 구축<br>RDS 환경 구축<br>프로젝트 배포<br>S3 Bucket 생성<br>DB 설계 및 삽입 SQL문 작성|OAuth JWT API 개발<br>카카오 회원가입 및 로그인 API 개발<br>카카오 로그인 서버 연결<br>API 명세서 작성<br>유저 정보 저장 DB 설계<br>Swagger API Docs 세팅|API 명세서 작성<br>추가정보 API 개발<br>문의사항 API 개발<br>칭호 API 개발<br>데이터 삽입 SQL문 작성<br>S3 Bucket 파일 업로드|API 명세서 작성<br>퀴즈 내용 보기 API 개발<br>퀴즈 정답 확인 API 개발<br>Swagger API Docs 세팅
+|프로젝트 세팅<br>엔티티 생성<br>CI/CD 및 RDS 환경 구축<br>OAuth JWT API 개발<br>카카오 로그인 서버 연결<br>프로젝트 배포<br>S3 Bucket 생성<br>DB 설계 및 삽입 SQL문 작성|OAuth JWT API 개발<br>회원가입 및 로그인 API 개발<br>회원정보 API 개발<br>카카오 로그인 서버 연결<br>API 명세서 작성<br>유저 정보 저장 DB 설계<br>Swagger API Docs 세팅|API 명세서 작성<br>추가정보 API 개발<br>문의사항 API 개발<br>칭호 API 개발<br>데이터 삽입 SQL문 작성<br>S3 Bucket 파일 업로드|API 명세서 작성<br>퀴즈 내용 보기 API 개발<br>퀴즈 정답 확인 API 개발<br>Swagger API Docs 세팅
 
 <br>
 
