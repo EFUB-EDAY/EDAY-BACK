@@ -55,14 +55,17 @@ public class MemberService {
 
 		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
 		List<QuizDto> openList = new ArrayList<>();
+		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
 		for (int dDay = 7; dDay >= 7 - differenceInDays; dDay--) {
-			if (dDay != 0) {
-				openList.add(new QuizDto(dDay));
+			for (MemberTitle memberTitle : memberTitles) {
+				if (!memberTitle.getGetTitle() && dDay != 0) {
+					openList.add(new QuizDto(dDay));
+				}
 			}
 		}
 
 		List<QuizDto> doneList = new ArrayList<>();
-		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
+		//List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
 		for (MemberTitle memberTitle : memberTitles) {
 			if (memberTitle.getGetTitle()) {
 				int subject = memberTitle.getTitle().getSubject().getDday();
