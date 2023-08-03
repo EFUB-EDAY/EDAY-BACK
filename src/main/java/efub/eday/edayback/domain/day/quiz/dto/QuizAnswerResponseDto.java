@@ -13,9 +13,15 @@ public class QuizAnswerResponseDto {
     private boolean isAnswer;
     @Schema(description = "해당 퀴즈에 대한 설명")
     private String quizDescription;
+    @Schema(description = "퀴즈 정답 해설 이미지")
+    private String quizDescriptionImage;
+    @Schema(description = "칭호 이미지")
+    private String titleImage;
 
-    public QuizAnswerResponseDto(boolean isAnswer, String quizDescription) {
+    public QuizAnswerResponseDto(boolean isAnswer, String quizDescription, String quizDescriptionImage, String titleImage) {
         this.isAnswer = isAnswer;
         this.quizDescription = quizDescription;
+        this.quizDescriptionImage = quizDescriptionImage;
+        this.titleImage = titleImage;
     }
 }
