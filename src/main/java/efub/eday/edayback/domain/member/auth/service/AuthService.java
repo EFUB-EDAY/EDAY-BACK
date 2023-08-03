@@ -54,19 +54,10 @@ public class AuthService {
 	private String redirectUri;
 
 	public AuthResponseDto signIn(String code) {
-		try {
-			Member currentMember = getCurrentMember();
-			return createAuthResponse(currentMember);
-		} catch (ResponseStatusException err) {
-			String kakaoToken = getKakaoToken(code);
-			log.debug("kakaoToken: {}", kakaoToken);
-			Member member = getKakaoProfile(kakaoToken);
-			log.debug("member login: {} {}", member.getId(), member.getNickname());
-			return createAuthResponse(member);
-		}
-	}
-
-	private AuthResponseDto createAuthResponse(Member member) {
+		String kakaoToken = getKakaoToken(code);
+		log.debug("kakaoToken: {}", kakaoToken);
+		Member member = getKakaoProfile(kakaoToken);
+		log.debug("member login: {} {}", member.getId(), member.getNickname());
 		String accessToken = jwtProvider.createAccessToken(member.getId());
 		String refreshToken = jwtProvider.createRefreshToken(member.getId());
 		AuthResponseDto authResponseDto = AuthResponseDto.builder()
