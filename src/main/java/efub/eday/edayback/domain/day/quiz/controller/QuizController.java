@@ -66,15 +66,17 @@ public class QuizController {
 	) {
 		boolean isCorrect;
 		String quizDescription = null;
+		String imageUrl = null;
 		try {
 			isCorrect = quizService.checkAnswer(dDay, quizRequestDto.getOptionNumber());
 			if (isCorrect) {
 				quizDescription = quizService.getQuizDescription(dDay);
+				imageUrl = quizService.getDescriptionImg(dDay);
 			}
 		} catch (IllegalArgumentException e) {
 			String errorMessage = e.getMessage();
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new QuizAnswerResponseDto(false, errorMessage));
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new QuizAnswerResponseDto(false, errorMessage, null));
 		}
-		return ResponseEntity.ok(new QuizAnswerResponseDto(isCorrect, quizDescription));
+		return ResponseEntity.ok(new QuizAnswerResponseDto(isCorrect, quizDescription, imageUrl));
 	}
 }

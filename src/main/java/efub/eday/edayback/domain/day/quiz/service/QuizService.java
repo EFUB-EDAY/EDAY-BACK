@@ -69,4 +69,10 @@ public class QuizService {
 		Quiz quiz = findQuiz(d_day);
 		return quiz.getExplanation();
 	}
+
+	//퀴즈 설명 이미지 가져오기
+	public String getDescriptionImg(int d_day){
+		Quiz quiz = findQuiz(d_day);
+		return quiz.getImageUrl();
+	}
 }
