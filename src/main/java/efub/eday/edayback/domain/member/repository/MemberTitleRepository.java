@@ -15,4 +15,6 @@ public interface MemberTitleRepository extends JpaRepository<MemberTitle, Intege
 	List<MemberTitle> findByMember(Member member);
 
 	Optional<MemberTitle> findByMemberAndTitle(Member member, Title title);
+
+	Optional<MemberTitle> findByMemberAndTitleSubjectDday(Member member, int dday);
 }
