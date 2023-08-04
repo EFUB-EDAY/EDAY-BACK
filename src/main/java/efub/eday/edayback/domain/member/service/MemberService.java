@@ -53,23 +53,27 @@ public class MemberService {
 			differenceInDays = 7;
 		}
 
-		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
-		List<QuizDto> openList = new ArrayList<>();
-		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
-		for (int dDay = 7; dDay >= 7 - differenceInDays; dDay--) {
-			for (MemberTitle memberTitle : memberTitles) {
-				if (!memberTitle.getGetTitle() && dDay != 0) {
-					openList.add(new QuizDto(dDay));
-				}
-			}
-		}
-
 		List<QuizDto> doneList = new ArrayList<>();
-		//List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
+		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
 		for (MemberTitle memberTitle : memberTitles) {
 			if (memberTitle.getGetTitle()) {
 				int subject = memberTitle.getTitle().getSubject().getDday();
 				doneList.add(new QuizDto(subject));
+			}
+		}
+
+		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
+		List<QuizDto> openList = new ArrayList<>();
+		for (int dDay = 7; dDay >= 7 - differenceInDays; dDay--) {
+			boolean isInDoneList = false;
+			for (QuizDto quiz : doneList) {
+				if (quiz.getDday() == dDay) {
+					isInDoneList = true;
+					break;
+				}
+			}
+			if (!isInDoneList && dDay != 0) {
+				openList.add(new QuizDto(dDay));
 			}
 		}
 
