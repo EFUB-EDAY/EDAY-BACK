@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.title.dto.TitleDto;
 import efub.eday.edayback.domain.day.title.dto.TitleResponseDto;
 import efub.eday.edayback.domain.day.title.service.TitleService;
@@ -40,7 +41,8 @@ public class TitleController {
 			schema = @Schema(implementation = TitleDto.class)))
 	@GetMapping("/{d_day}")
 	public ResponseEntity<TitleDto> getTitleByDday(@PathVariable("d_day") int dday) {
-		TitleDto titleDto = titleService.getTitleByDday(dday);
+		Dday ddayEnum = Dday.fromRemainingDays(dday);
+		TitleDto titleDto = titleService.getTitleByDday(ddayEnum);
 		return ResponseEntity.ok(titleDto);
 	}
 }

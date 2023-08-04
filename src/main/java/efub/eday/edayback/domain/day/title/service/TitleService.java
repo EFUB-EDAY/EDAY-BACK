@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.title.dto.MemberProfileDto;
 import efub.eday.edayback.domain.day.title.dto.TitleDto;
 import efub.eday.edayback.domain.day.title.dto.TitleResponseDto;
@@ -55,14 +56,14 @@ public class TitleService {
 	}
 
 	@Transactional(readOnly = true)
-	public TitleDto getTitleByDday(int dday) {
+	public TitleDto getTitleByDday(Dday dday) {
 		Member member = authService.getCurrentMember();
 		MemberTitle memberTitle = memberTitleRepository.findByMemberAndTitleSubjectDday(member, dday)
-			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "해당 디데이의 칭호를 찾을 수 없습니다."));
+			.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, dday + ": 해당 디데이의 칭호를 찾을 수 없습니다."));
 
 		Title title = memberTitle.getTitle();
 		return new TitleDto(
-			dday,
+			title.getSubject().getDday(),
 			title.getName(),
 			title.getImageUrl(),
 			memberTitle.getGetTitle()

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import efub.eday.edayback.domain.day.dday.entity.Dday;
 import efub.eday.edayback.domain.day.title.entity.Title;
 import efub.eday.edayback.domain.member.entity.Member;
 import efub.eday.edayback.domain.member.entity.MemberTitle;
@@ -16,5 +17,5 @@ public interface MemberTitleRepository extends JpaRepository<MemberTitle, Intege
 
 	Optional<MemberTitle> findByMemberAndTitle(Member member, Title title);
 
-	Optional<MemberTitle> findByMemberAndTitleSubjectDday(Member member, int dday);
+	Optional<MemberTitle> findByMemberAndTitleSubjectDday(Member member, Dday dday);
 }
