@@ -23,7 +23,7 @@ public class Title {
     private String imageUrl;
 
     @Column(name = "image_with_not_text_url", nullable = false)
-    private String imageWithNotTextUrl;
+    private String thumbnailImageUrl;
 
     @OneToOne
     @JoinColumn(name = "subject_id", nullable = false)
