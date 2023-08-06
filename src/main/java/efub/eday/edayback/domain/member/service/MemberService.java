@@ -55,7 +55,6 @@ public class MemberService {
 		if (differenceInDays > 6) {
 			differenceInDays = 6;
 		}
-		int dDay = 7 - differenceInDays;
 
 		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
 		List<QuizDto> openList = new ArrayList<>();
