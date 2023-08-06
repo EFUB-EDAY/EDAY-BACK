@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AuthRequestDto {
-	@Schema(description = "인가 코드")
-	private String code;
+    @Schema(description = "인가 코드")
+    private String code;
+    @Schema(description = "리다이렉트 URI")
+    private String redirectUri;
 }
