@@ -49,21 +49,21 @@ public class MemberService {
 			member.getLevel(),
 			title.getName());
 
-		// 현재 날짜와 데이터베이스에 저장된 날짜 사이의 차이 계산
+		// 현재 날짜와 데이터베이스에 저장된 날짜 사이의 차이 계산. 날짜 차이는 6일이 최대(날짜 차이가 6이면 D-1임)
 		LocalDateTime currentDate = LocalDateTime.now();
 		int differenceInDays = Math.toIntExact(ChronoUnit.DAYS.between(member.getCreatedDate(), currentDate));
-		if (differenceInDays >= 7) {
-			differenceInDays = 7;
+		if (differenceInDays > 6) {
+			differenceInDays = 6;
 		}
+		int dDay = 7 - differenceInDays;
 
 		//날짜가 같아 그러면 difference=0, openList는 dDay=7 하나
 		List<QuizDto> openList = new ArrayList<>();
-		for (int dDay = 7; dDay >= 7 - differenceInDays; dDay--) {
-			if (dDay != 0) {
-				openList.add(new QuizDto(dDay));
-			}
+		for (int day = 7; day >= 7 - differenceInDays; day--) {
+			openList.add(new QuizDto(day));
 		}
 
+		//doneList는 memberTitle테이블에 1로 된(푼 처리된) 애들 리스트를 불러옴
 		List<QuizDto> doneList = new ArrayList<>();
 		List<MemberTitle> memberTitles = memberTitleRepository.findByMember(member);
 		for (MemberTitle memberTitle : memberTitles) {
@@ -74,8 +74,8 @@ public class MemberService {
 		}
 
 		List<QuizDto> closeList = new ArrayList<>();
-		for (int dDay = 6 - differenceInDays; dDay >= 1; dDay--) {
-			closeList.add(new QuizDto(dDay));
+		for (int day = 6 - differenceInDays; day >= 1; day--) {
+			closeList.add(new QuizDto(day));
 		}
 
 		QuizListDto quizListDto = new QuizListDto();
