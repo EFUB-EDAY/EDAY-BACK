@@ -51,7 +51,8 @@ public class MemberService {
 
 		// 현재 날짜와 데이터베이스에 저장된 날짜 사이의 차이 계산. 날짜 차이는 6일이 최대(날짜 차이가 6이면 D-1임)
 		LocalDateTime currentDate = LocalDateTime.now();
-		int differenceInDays = Math.toIntExact(ChronoUnit.DAYS.between(member.getCreatedDate(), currentDate));
+		int differenceInDays = Math.toIntExact(
+			ChronoUnit.DAYS.between(member.getCreatedDate().toLocalDate(), currentDate.toLocalDate()));
 		if (differenceInDays > 6) {
 			differenceInDays = 6;
 		}
