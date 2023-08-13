@@ -1,6 +1,6 @@
 package efub.eday.edayback.domain.member.entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,7 +42,7 @@ public class Member {
 
 	@CreationTimestamp   //insert할 때 자동 날짜 적용
 	@Column(nullable = false)
-	private LocalDateTime createdDate;
+	private LocalDate createdDate;
 
 	@Column(nullable = false)
 	private Boolean isActive;
@@ -52,7 +52,7 @@ public class Member {
 		this.nickname = nickname;
 		this.loginId = loginId;
 		this.profileImageUrl = profileImageUrl;
-		this.level = 1;
+		this.level = 0;
 		this.isActive = true;
 	}
 
