@@ -52,7 +52,7 @@ public class Member {
 		this.nickname = nickname;
 		this.loginId = loginId;
 		this.profileImageUrl = profileImageUrl;
-		this.level = 1;
+		this.level = 0;
 		this.isActive = true;
 	}
 
